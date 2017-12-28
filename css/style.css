@@ -1,0 +1,9 @@
+.container {
+	text-align: center;
+}
+
+.admin,
+.adminContainer,
+.catlist {
+	float:left;
+}

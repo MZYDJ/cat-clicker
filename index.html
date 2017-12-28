@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 <head>
     <meta charset="UTF-8">
-    <title>Cat Clicker</title>
+    <title>猫点击</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <ul id="cat-list"></ul>
-    <div id="cat">
+    <div class="container">
+    <header>
+        <h1>猫点击</h1>
+    </header>
+    <ul class="catlist" id="cat-list" data-bind='foreach: catList'>
+        <li data-bind='click: $parent.chooseCat,text: name'></li>
+    </ul>
+    <div id="cat" data-bind='with: currentCat()'>
 
         <h2 id="cat-name" data-bind='text: name'></h2>
         <h3 data-bind='text: grade'></h3>
         <div id="cat-count" data-bind='text: clickCount'></div>
-        <img id="cat-img" src="" alt="cute cat" data-bind='click: incrementCounter, attr: {src: imgSrc}'>
+        <img id="cat-img" src="" alt="cute cat" data-bind='click: $parent.incrementCounter, attr: {src: imgSrc}'>
 
+    </div>
+    <h2>Nicknames:</h2>
+    <ul data-bind='foreach: currentCat().nameList'>
+        <li data-bind='text: $data'></li>
+    </ul>
     </div>
     <script src="js/lib/knockout-3.2.0.js"></script>
     <script src="http://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
