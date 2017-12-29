@@ -44,7 +44,7 @@ class ViewModel {
 		this.catList = ko.observableArray([]);
 		this.cat = ko.observable(model.cat)
 		model.catName.forEach((name, inedx) => {
-			this.catList.push(new Cat({
+			this.catList().push(new Cat({
 				clickCount: model.moves[inedx],
 				name: name,
 				imgSrc: model.catImgList[inedx],
@@ -52,7 +52,7 @@ class ViewModel {
 			}));
 		});
 
-		$('.catlist').on('click', 'li', this.chooseCat);
+		//$('.catlist').on('click', 'li', this.chooseCat);
 
 		this.currentCat = ko.dependentObservable(() =>{
 			return this.catList()[this.cat()];
@@ -65,7 +65,7 @@ class ViewModel {
 	}
 
 	chooseCat() {
-		console.log(this)
+		// console.log(this)
 		// console.log(that)
 		// console.log($.inArray(this.name(), model.catName))
 		that.cat($.inArray(this.name(), model.catName));
