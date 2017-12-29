@@ -1,6 +1,5 @@
 let model = {
 	moves: [0, 0, 0, 0, 0],
-	cat: 0,
 	catName: ['cat1', 'cat2', 'cat3', 'cat4', 'cat5'],
 	catImgList: ['img/22252709_010df3379e_z.jpg',
 		'img/434164568_fea0ad4013_z.jpg',
@@ -42,9 +41,8 @@ class ViewModel {
 	constructor() {
 		that = this;
 		this.catList = ko.observableArray([]);
-		this.cat = ko.observable(model.cat)
 		model.catName.forEach((name, inedx) => {
-			this.catList().push(new Cat({
+			this.catList.push(new Cat({
 				clickCount: model.moves[inedx],
 				name: name,
 				imgSrc: model.catImgList[inedx],
@@ -54,9 +52,7 @@ class ViewModel {
 
 		//$('.catlist').on('click', 'li', this.chooseCat);
 
-		this.currentCat = ko.dependentObservable(() =>{
-			return this.catList()[this.cat()];
-		});
+		this.currentCat = ko.observable(this.catList()[0]);
 	}
 
 	incrementCounter() {
@@ -64,11 +60,12 @@ class ViewModel {
 		this.clickCount(this.clickCount() + 1);
 	}
 
-	chooseCat() {
+	chooseCat(clickedCat) {
 		// console.log(this)
 		// console.log(that)
 		// console.log($.inArray(this.name(), model.catName))
-		that.cat($.inArray(this.name(), model.catName));
+		// that.cat($.inArray(this.name(), model.catName));
+		that.currentCat(clickedCat);
 	}
 }
 
