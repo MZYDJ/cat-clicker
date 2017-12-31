@@ -36,10 +36,10 @@ class Cat {
 		});
 	}
 }
-let that;
+// let that;
 class ViewModel {
 	constructor() {
-		that = this;
+		// that = this;
 		this.catList = ko.observableArray([]);
 		model.catName.forEach((name, inedx) => {
 			this.catList.push(new Cat({
@@ -48,6 +48,14 @@ class ViewModel {
 				imgSrc: model.catImgList[inedx],
 				nameList: model.nameList[inedx]
 			}));
+		this.chooseCat = clickedCat => {
+			// console.log(this)
+			this.currentCat(clickedCat);
+		};
+		this.incrementCounter = () => {
+			// console.log(this)
+			this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+		}
 		});
 
 		//$('.catlist').on('click', 'li', this.chooseCat);
@@ -55,18 +63,18 @@ class ViewModel {
 		this.currentCat = ko.observable(this.catList()[0]);
 	}
 
-	incrementCounter() {
-		// console.log(this)
-		this.clickCount(this.clickCount() + 1);
-	}
+	// incrementCounter() {
+	// 	// console.log(this)
+	// 	this.clickCount(this.clickCount() + 1);
+	// }
 
-	chooseCat(clickedCat) {
-		// console.log(this)
-		// console.log(that)
-		// console.log($.inArray(this.name(), model.catName))
-		// that.cat($.inArray(this.name(), model.catName));
-		that.currentCat(clickedCat);
-	}
+	// chooseCat(clickedCat) {
+	// 	// console.log(this)
+	// 	// console.log(that)
+	// 	// console.log($.inArray(this.name(), model.catName))
+	// 	// that.cat($.inArray(this.name(), model.catName));
+	// 	that.currentCat(clickedCat);
+	// }
 }
 
 ko.applyBindings(new ViewModel());
